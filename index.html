@@ -14,31 +14,35 @@
 <body>
 <div class="container">
     <h1>Dodanie książki</h1>
-    <form class="form-horizontal" id="formAdd">
+    <form class="form-horizontal" id="formBook">
         <div class="row">
+            <div class="form-group col-md-6">
+                <label class="control-label col-sm-2">ID:</label>
+                <input type="text" class="form-control" id="formId" name="isbn" placeholder="Enter Id">
+            </div>
             <div class="form-group col-md-6">
                 <label class="control-label col-sm-2">ISBN:</label>
-                <input type="text" class="form-control" name="isbn" placeholder="Enter ISBN">
+                <input type="text" class="form-control" id="formIsbn" name="isbn" placeholder="Enter ISBN">
             </div>
+        </div>
+        <div class="row">
             <div class="form-group col-md-6">
                 <label class="control-label col-sm-2">Title:</label>
-                <input type="text" class="form-control" name="title" placeholder="Enter title">
+                <input type="text" class="form-control" id="formTitle" name="title" placeholder="Enter title">
             </div>
-        </div>
-        <div class="row">
             <div class="form-group col-md-6">
                 <label class="control-label col-sm-2">Author:</label>
-                <input type="text" class="form-control" name="author" placeholder="Enter author">
-            </div>
-            <div class="form-group col-md-6">
-                <label class="control-label col-sm-2">Publisher:</label>
-                <input type="text" class="form-control" name="publisher" placeholder="Enter publisher">
+                <input type="text" class="form-control" id="formAuthor" name="author" placeholder="Enter author">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-md-6">
+                <label class="control-label col-sm-2">Publisher:</label>
+                <input type="text" class="form-control" id="formPublisher" name="publisher" placeholder="Enter publisher">
+            </div>
+            <div class="form-group col-md-6">
                 <label class="control-label col-sm-2">Type:</label>
-                <input type="text" class="form-control" name="type" placeholder="Enter type">
+                <input type="text" class="form-control" id="formType" name="type" placeholder="Enter type">
             </div>
         </div>
         <input type="submit" id="submitBtn" data-method="POST" class="btn btn-success">

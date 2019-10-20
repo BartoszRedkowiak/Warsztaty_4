@@ -56,22 +56,37 @@ function getBooks() {
 
 
 //------------- Zadanie 5 -----------------------------------------------------------
-//TODO dokończyć + dodać metodę ajaxCall (slack)
 
-    $('#submitBtn').on('click', function (event) {
+    $('#formBook').on('submit',  function (event) {
         event.preventDefault();
 
-        $.ajax({
-            url: "http://localhost:8282/books/",
-            type: $(this).data('method'),
-            dataType: "json",
-            contentType: "application/json"
-        }).done(function (result) {
+        var bookId = $('#formId').val();
+        var bookIsbn = $('#formIsbn').val();
+        var bookAuthor = $('#formAuthor').val();
+        var bookTitle = $('#formTitle').val();
+        var bookPublisher = $('#formPublisher').val();
+        var bookType = $('#formType').val();
+        var ajaxType = $("#submitBtn").data("method");
+
+        var book = {id: bookId, isbn: bookIsbn, title: bookTitle, author: bookAuthor, publisher: bookPublisher, type: bookType};
+        var bookString = JSON.stringify(book);
+
+        ajaxCall('', ajaxType, bookString).done(function (result) {
             getBooks();
         });
 
 
-    })
+    });
+
+    function ajaxCall(bookId, type, data) {
+        return $.ajax({
+            url: "http://localhost:8282/books/" + bookId,
+            type: type,
+            dataType: "json",
+            data: data,
+            contentType: "application/json"
+        })
+    }
 
 
 });
