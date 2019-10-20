@@ -19,11 +19,11 @@ function getBooks() {
             //Tworzę nowy wiersz
             var tr = $('<tr>').addClass('bookRecord');
             //Tworzę kolumny
-            $('<td>').text(book.id).attr('id', 'bookId_' + book.id).appendTo(tr);
+            $('<td>').text(book.id).attr('id', 'bookId_' + book.id).addClass('bookId').appendTo(tr);
             $('<td>').text(book.title).attr('id', 'title_' + book.id).addClass('bookTitle')
                 .attr('data-method', 'GET').appendTo(tr);
             $('<td>').text(book.author).attr('id', 'bookAuthor_' + book.id).appendTo(tr);
-            $('<td><button class="btn btn-danger" data-method="DELETE">Delete</button></td>').appendTo(tr);
+            $('<td><button class="btn btn-danger dltBtn" data-method="DELETE">Delete</button></td>').appendTo(tr);
 
             //Podpinam wiersz pod tabelę na stronie
             tr.appendTo(tBody);
@@ -88,5 +88,20 @@ function getBooks() {
         })
     }
 
+//------------- Zadanie 6 -----------------------------------------------------------
+
+    tBody.on('click', '.dltBtn', function () {
+        var tr = $(this).parent().parent();
+        var trHidden = tr.next();
+
+        var bookId = tr.find('.bookId').text();
+        var ajaxType = tr.find('button').data("method");
+
+        ajaxCall(bookId, ajaxType, '').done(function () {
+            tr.remove();
+            trHidden.remove();
+            console.log('Usunięto rekord');
+        })
+    })
 
 });
