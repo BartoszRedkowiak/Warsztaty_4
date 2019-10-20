@@ -3,7 +3,7 @@ $(function (events, handler) {
 //------------- Zadanie 3 -----------------------------------------------------------
 
     var tBody = $('#tBody');
-    getBooks()
+    getBooks();
 
 function getBooks() {
     $.ajax({
@@ -41,13 +41,7 @@ function getBooks() {
         var id = $(this).prev().text();
         var bookDescription = $(this).parent().next().toggle(300);
 
-
-        $.ajax({
-            url: "http://localhost:8282/books/" + id,
-            type: "GET",
-            dataType: "json",
-            contentType: "application/json"
-        }).done(function (result) {
+        ajaxCall(id, "GET", "").done(function (result) {
             var input = 'ISBN: ' + result.isbn + '<br>Publisher: ' + result.publisher + '<br>Type: ' + result.type;
             bookDescription.find('td').html(input);
         });
