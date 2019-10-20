@@ -3,13 +3,16 @@ $(function (events, handler) {
 //------------- Zadanie 3 -----------------------------------------------------------
 
     var tBody = $('#tBody');
+    getBooks()
 
+function getBooks() {
     $.ajax({
         url: "http://localhost:8282/books/",
         type: "GET",
         dataType: "json",
         contentType: "application/json"
     }).done(function (result) {
+        tBody.html('');
         for (var i = 0; i < result.length; i++) {
             //Odbieram pierwszą książkę
             var book = result[i];
@@ -30,6 +33,7 @@ $(function (events, handler) {
             hiddenTr.appendTo(tBody);
         }
     });
+}
 
 //------------- Zadanie 4 -----------------------------------------------------------
 
@@ -48,5 +52,26 @@ $(function (events, handler) {
             bookDescription.find('td').html(input);
         });
     });
+
+
+
+//------------- Zadanie 5 -----------------------------------------------------------
+//TODO dokończyć + dodać metodę ajaxCall (slack)
+
+    $('#submitBtn').on('click', function (event) {
+        event.preventDefault();
+
+        $.ajax({
+            url: "http://localhost:8282/books/",
+            type: $(this).data('method'),
+            dataType: "json",
+            contentType: "application/json"
+        }).done(function (result) {
+            getBooks();
+        });
+
+
+    })
+
 
 });
