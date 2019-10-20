@@ -6,12 +6,8 @@ $(function (events, handler) {
     getBooks();
 
 function getBooks() {
-    $.ajax({
-        url: "http://localhost:8282/books/",
-        type: "GET",
-        dataType: "json",
-        contentType: "application/json"
-    }).done(function (result) {
+
+    ajaxCall("", "GET", "").done(function (result) {
         tBody.html('');
         for (var i = 0; i < result.length; i++) {
             //Odbieram pierwszą książkę
